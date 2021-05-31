@@ -1,14 +1,15 @@
-const mongodb = require('mongodb');
-const MongoClient = mongodb.MongoClient
+const mongoose = require("mongoose");
 const config = require('config');
+// require Atlas URI
 const db = config.get('mongoURI');
 
 const connectDB = async () => {
   try {
-    await MongoClient.connect(db, { useNewUrlParser: true, useUnifiedTopology: true } )
+    await mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true } );
     console.log('MongoDB connected')
   } catch (err) {
-    console.log(err.message)
+    console.log(err.message);
+    process.exit(1);
   }
 }
 
